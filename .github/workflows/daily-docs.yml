@@ -1,0 +1,58 @@
+name: Daily RAG docs improvement
+
+on:
+  schedule:
+    - cron: "0 8 * * *"    # every day 08:00 German time (DST-aware)
+      timezone: "Europe/Berlin"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only show the proposed fix, don't commit"
+        type: boolean
+        default: true
+      doc_file:
+        description: "Optional: check this file instead of today's rotation"
+        type: string
+        default: ""
+
+permissions:
+  contents: write   # needed only to push the commit
+
+concurrency:
+  group: daily-docs
+  cancel-in-progress: false
+
+jobs:
+  improve-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Propose and validate one grounded fix
+        id: ai
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}        # optional override
+          DOC_FILES: README.md,docs/architecture.md,docs/evaluation-plan.md,SECURITY.md
+          REFERENCE_FILES: workflows/ingestion.json,workflows/retrieval.json
+          DOC_FILE: ${{ inputs.doc_file }}
+          MAX_COST_USD: "0.02"
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+        run: python3 .github/scripts/improve_docs.py
+
+      - name: Commit and push
+        if: steps.ai.outputs.changed == 'true'
+        env:
+          MSG: ${{ steps.ai.outputs.message }}
+          FILE: ${{ steps.ai.outputs.file }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "Konstantinos Kallias"
+          git config user.email "konstantinoskallias@icloud.com"
+          git add -- "$FILE"
+          git diff --cached --quiet && { echo "Nothing to commit."; exit 0; }
+          git commit -m "$MSG"
+          git push origin "HEAD:$BRANCH"
