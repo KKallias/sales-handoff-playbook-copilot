@@ -10,7 +10,7 @@ The n8n exports in this repository have been sanitized. They do not contain API 
 - Use synthetic data for demonstrations.
 - Review your organization's policies before processing customer data.
 - Limit access to workflow executions, vector indexes, source documents, and review records.
-- Keep the human-review step for any content that could affect a customer commitment.
+- Require human review of any content that could affect a customer commitment.
 
 ## Reporting an issue
 
