@@ -61,7 +61,7 @@ The generated handoff contains:
 7. missing information; and
 8. up to three clearly labelled suggestions.
 
-The prompt explicitly rejects invented facts, prices, promises, and product features. If the knowledge base does not support an answer, the workflow returns `No supporting information found.`
+The prompt explicitly rejects invented facts, prices, promises, and product features. If the retrieved company documents do not contain an answer, the prompt instructs the model to write `No supporting information found.`
 
 ## Reliability choices
 
