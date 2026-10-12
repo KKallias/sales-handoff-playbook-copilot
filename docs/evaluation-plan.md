@@ -17,7 +17,7 @@ This plan turns the workflow's safety rules into repeatable checks.
 
 ## Suggested metrics
 
-- **Retrieval hit rate@k:** whether the supporting chunk appears in the top 3 and top 5 results.
+- **Retrieval hit rate@k:** whether the supporting chunk appears in the top *k* results, measured separately at *k* = 3 and *k* = 5.
 - **Citation correctness:** whether a cited source supports the generated statement.
 - **Faithfulness:** whether the handoff adds unsupported customer or product claims.
 - **Commitment precision:** the proportion of extracted commitments that were explicit in the notes.
