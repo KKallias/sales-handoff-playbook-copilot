@@ -121,7 +121,7 @@ The proposed test set covers explicit commitments, weak signals, missing evidenc
 
 This repository documents a working portfolio prototype, not a production CRM system.
 
-- Add document metadata during ingestion so every answer can reliably cite title, version, and section.
+- Add document metadata during ingestion and include it in retrieval results so answers can reliably cite title, version, and section.
 - Add metadata filtering and reranking so current guidance wins over outdated material.
 - Replace the spreadsheet review queue with PostgreSQL for stronger auditability and analytics.
 - Add automated evaluation for retrieval hit rate, citation correctness, missing-field detection, latency, and cost.
