@@ -2,7 +2,7 @@
 
 ## System boundary
 
-The prototype accepts only fictional documents and fictional call notes. It does not connect to a production CRM, send customer emails, or make autonomous sales decisions.
+The prototype is intended for fictional documents and fictional call notes. It does not connect to a production CRM, send customer emails, or make autonomous sales decisions.
 
 ## Ingestion workflow
 
