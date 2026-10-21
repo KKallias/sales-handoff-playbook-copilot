@@ -31,7 +31,7 @@ This plan turns the workflow's safety rules into repeatable checks.
 - All explicit commitments preserve their owner and deadline when stated.
 - Weak signals never appear under confirmed actions.
 - Unsupported questions always trigger the abstention response.
-- Every output remains in `Pending` status until reviewed by a person.
+- Every output is saved with `Pending` status.
 
 ## Honest current status
 
