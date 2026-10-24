@@ -18,7 +18,7 @@ The prototype is intended for fictional documents and fictional call notes. It d
 2. An information extractor produces customer needs, concerns, confirmed actions, and missing information.
 3. Pinecone retrieves relevant playbook chunks using the original notes as the semantic query.
 4. The workflow aggregates the retrieved items.
-5. A second model creates a handoff of no more than 250 words.
+5. A second model creates a handoff under 250 words.
 6. Google Sheets stores the input, extraction, sources, output, and `Pending` review status.
 
 ## Information boundaries
